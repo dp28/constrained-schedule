@@ -3,9 +3,9 @@ import React from 'react';
 import TimeRange from '../time-range/time-range';
 import DateRange from '../date-range/date-range';
 
-const ConstrainedEvent = ({ event, minutesPerUnit }) => (
-  <div className="ConstrainedEvent">
-    <span className="name">{event.name}</span>
+const ConstrainedEventListItem = ({ event, minutesPerUnit }) => (
+  <div className="ConstrainedEventListItem">
+    <span className="ConstrainedEventListItem-name">{event.name}</span>
     <dl>
       <dt>Duration</dt>
       <dd><TimeRange {...event.duration} minutesPerUnit={minutesPerUnit} /></dd>
@@ -17,4 +17,4 @@ const ConstrainedEvent = ({ event, minutesPerUnit }) => (
   </div>
 );
 
-export default ConstrainedEvent;
+export default ConstrainedEventListItem;
