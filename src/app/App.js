@@ -1,23 +1,27 @@
 import React from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import ConstrainedEventList from '../constrained-event/ConstrainedEventList';
-import state from '../state/example';
 import './App.css';
 
-const App = () => (
+export const App = (props) => (
   <div className="App">
     <Grid>
       <Row>
         <Col xs={12} sm={8}>
-          <ConstrainedEventList
-            events={state.constrainedEvents}
-            minutesPerUnit={state.eventContext.minutesPerUnit}
-          />
+          <ConstrainedEventList {...props} />
         </Col>
       </Row>
     </Grid>
   </div>
 );
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    events: state.constrainedEvents,
+    minutesPerUnit: state.eventContext.minutesPerUnit
+  };
+};
+
+export default connect(mapStateToProps)(App);

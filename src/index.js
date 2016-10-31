@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app/App';
-import './index.css';
+import { Provider } from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 
+import store from './state/store';
+import initialState from './state/example';
+import { initialiseState } from './state/StateActions';
+import App from './app/App';
+import './index.css';
+
+store.dispatch(initialiseState(initialState));
+
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
