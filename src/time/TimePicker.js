@@ -1,7 +1,7 @@
 import React from 'react';
 import {FormControl} from 'react-bootstrap';
 
-import './time-picker.css';
+import './TimePicker.css';
 
 const TimePicker = ({ value }) => (
   <FormControl className="TimePicker" type="time" value={toTimeString(value)} />

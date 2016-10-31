@@ -1,7 +1,7 @@
 import React from 'react';
 import {ListGroup, ListGroupItem} from 'react-bootstrap';
 
-import ConstrainedEvent from '../constrained-event/constrained-event';
+import ConstrainedEvent from './ConstrainedEvent';
 
 const ListItem = props => (
   <ListGroupItem key={props.event.id}>

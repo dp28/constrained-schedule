@@ -1,8 +1,8 @@
 import React from 'react';
 
-import TimeRange from '../time-range/time-range';
-import DurationRange from '../duration-range/duration-range';
-import './constrained-event.css';
+import TimeRange from '../time/TimeRange';
+import DurationRange from '../duration/DurationRange';
+import './ConstrainedEvent.css';
 
 const ConstrainedEvent = ({ event, minutesPerUnit }) => (
   <div className="ConstrainedEvent">

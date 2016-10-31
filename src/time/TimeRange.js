@@ -1,8 +1,8 @@
 import React from 'react';
 import {FormGroup} from 'react-bootstrap';
 
-import TimePicker from '../time-picker/time-picker';
-import './time-range.css';
+import TimePicker from './TimePicker';
+import './TimeRange.css';
 
 const TimeRange = ({ min, max }) => (
   <FormGroup className="TimeRange">

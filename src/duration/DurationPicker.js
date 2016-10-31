@@ -1,7 +1,7 @@
 import React from 'react';
 import {FormControl} from 'react-bootstrap';
 
-import './duration-picker.css';
+import './DurationPicker.css';
 
 const DurationPicker = ({ minutesPerUnit, value }) => (
   <FormControl

@@ -1,8 +1,8 @@
 import React from 'react';
 import {FormGroup} from 'react-bootstrap';
 
-import DurationPicker from '../duration-picker/duration-picker';
-import './duration-range.css';
+import DurationPicker from './DurationPicker';
+import './DurationRange.css';
 
 const DurationRange = ({ min, max, minutesPerUnit }) => {
   return (
