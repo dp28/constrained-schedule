@@ -1,9 +1,11 @@
 import React from 'react';
+import {connect} from "react-redux";
 import {FormControl} from 'react-bootstrap';
 
+import {extractEventContext} from '../event-context/event-context-utils';
 import './DurationPicker.css';
 
-const DurationPicker = ({ minutesPerUnit, value }) => (
+export const DurationPicker = ({ value, minutesPerUnit }) => (
   <FormControl
     className="DurationPicker"
     type="number"
@@ -16,4 +18,4 @@ function scale(time, minutesPerUnit) {
   return time * minutesPerUnit;
 }
 
-export default DurationPicker;
+export default connect(extractEventContext)(DurationPicker);

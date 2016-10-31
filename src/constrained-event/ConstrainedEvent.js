@@ -4,12 +4,12 @@ import TimeRange from '../time/TimeRange';
 import DurationRange from '../duration/DurationRange';
 import './ConstrainedEvent.css';
 
-const ConstrainedEvent = ({ event, minutesPerUnit }) => (
+const ConstrainedEvent = ({ event }) => (
   <div className="ConstrainedEvent">
     <span className="ConstrainedEvent-name">{event.name}</span>
     <label>
       <span className="ConstrainedEvent-field">Duration</span>
-      <DurationRange {...event.duration} minutesPerUnit={minutesPerUnit} />
+      <DurationRange {...event.duration} />
     </label>
 
     <label>

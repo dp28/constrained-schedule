@@ -4,12 +4,12 @@ import {FormGroup} from 'react-bootstrap';
 import DurationPicker from './DurationPicker';
 import './DurationRange.css';
 
-const DurationRange = ({ min, max, minutesPerUnit }) => {
+const DurationRange = ({ min, max }) => {
   return (
     <FormGroup className="DurationRange">
-      <DurationPicker minutesPerUnit={minutesPerUnit} value={min} />
+      <DurationPicker value={min} />
       to
-      <DurationPicker minutesPerUnit={minutesPerUnit} value={max} />
+      <DurationPicker value={max} />
       minutes
     </FormGroup>
   );
