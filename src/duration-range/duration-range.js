@@ -1,19 +1,18 @@
 import React from 'react';
-import {FormGroup, FormControl} from 'react-bootstrap';
+import {FormGroup} from 'react-bootstrap';
 
-const TimeRange = ({ min, max, minutesPerUnit }) => {
+import DurationPicker from '../duration-picker/duration-picker';
+import './duration-range.css';
+
+const DurationRange = ({ min, max, minutesPerUnit }) => {
   return (
-    <FormGroup className="TimeRange">
-      <FormControl type="number" step={minutesPerUnit} value={scale(min, minutesPerUnit)} />
+    <FormGroup className="DurationRange">
+      <DurationPicker minutesPerUnit={minutesPerUnit} value={min} />
       to
-      <FormControl type="number" step={minutesPerUnit} value={scale(max, minutesPerUnit)} />
+      <DurationPicker minutesPerUnit={minutesPerUnit} value={max} />
       minutes
     </FormGroup>
   );
 };
 
-function scale(time, minutesPerUnit) {
-  return time * minutesPerUnit;
-}
-
-export default TimeRange;
+export default DurationRange;

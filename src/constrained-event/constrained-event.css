@@ -1,0 +1,9 @@
+.ConstrainedEvent-field {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.ConstrainedEvent label {
+  font-weight: normal;
+  display: block;
+}

@@ -1,16 +1,15 @@
 import React from 'react';
-import {FormGroup, FormControl} from 'react-bootstrap';
+import {FormGroup} from 'react-bootstrap';
+
+import TimePicker from '../time-picker/time-picker';
+import './time-range.css';
 
 const TimeRange = ({ min, max }) => (
   <FormGroup className="TimeRange">
-    <FormControl type="time" value={toTimeString(min)} />
+    <TimePicker value={min} />
     to
-    <FormControl type="time" value={toTimeString(max)} />
+    <TimePicker value={max} />
   </FormGroup>
 );
-
-function toTimeString(date) {
-  return date.toTimeString().substring(0, 8);
-}
 
 export default TimeRange;

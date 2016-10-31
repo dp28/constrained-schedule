@@ -1,0 +1,9 @@
+input.DurationPicker {
+  display: inline-block;
+  width: 80px;
+  margin-right: 5px;
+}
+
+input.DurationPicker:not(:first-of-type) {
+  margin-left: 5px;
+}
