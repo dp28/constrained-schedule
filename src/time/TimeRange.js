@@ -6,9 +6,9 @@ import './TimeRange.css';
 
 const TimeRange = ({ min, max, variablePath }) => (
   <FormGroup className="TimeRange">
-    <TimePicker value={min} variablePath={variablePath.concat(['min'])} />
+    <TimePicker dateTime={min} variablePath={variablePath.concat(['min'])} />
     to
-    <TimePicker value={max} variablePath={variablePath.concat(['max'])} />
+    <TimePicker dateTime={max} variablePath={variablePath.concat(['max'])} />
   </FormGroup>
 );
 

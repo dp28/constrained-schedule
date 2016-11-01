@@ -1,9 +1,14 @@
-input.TimePicker {
+.TimePicker {
   display: inline-block;
-  width: 100px;
+  width: 130px;
   margin-right: 5px;
 }
 
-input.TimePicker:not(:first-of-type) {
+.TimePicker:not(:first-of-type) {
   margin-left: 5px;
+}
+
+.TimePicker select, .TimePicker .form-group {
+  display: inline-block;
+  width: 65px;
 }
