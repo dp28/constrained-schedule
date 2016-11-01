@@ -8,7 +8,6 @@ const TimePicker = ({ value, variablePath }) => (
 );
 
 function toTimeString(date, variablePath) {
-  console.log(variablePath)
   return date.toTimeString().substring(0, 8);
 }
 
