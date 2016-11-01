@@ -3,11 +3,12 @@ import {FormControl} from 'react-bootstrap';
 
 import './TimePicker.css';
 
-const TimePicker = ({ value }) => (
-  <FormControl className="TimePicker" type="time" value={toTimeString(value)} />
+const TimePicker = ({ value, variablePath }) => (
+  <FormControl className="TimePicker" type="time" value={toTimeString(value, variablePath)} />
 );
 
-function toTimeString(date) {
+function toTimeString(date, variablePath) {
+  console.log(variablePath)
   return date.toTimeString().substring(0, 8);
 }
 

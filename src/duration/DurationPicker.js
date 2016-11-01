@@ -5,7 +5,7 @@ import {FormControl} from 'react-bootstrap';
 import {extractMinutesPerUnit} from '../event-context/event-context-utils';
 import './DurationPicker.css';
 
-export const DurationPicker = ({ value, minutesPerUnit }) => (
+export const DurationPicker = ({ value, variablePath, minutesPerUnit }) => (
   <FormControl
     className="DurationPicker"
     type="number"

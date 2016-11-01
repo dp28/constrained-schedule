@@ -4,11 +4,11 @@ import {FormGroup} from 'react-bootstrap';
 import TimePicker from './TimePicker';
 import './TimeRange.css';
 
-const TimeRange = ({ min, max }) => (
+const TimeRange = ({ min, max, variablePath }) => (
   <FormGroup className="TimeRange">
-    <TimePicker value={min} />
+    <TimePicker value={min} variablePath={variablePath.concat(['min'])} />
     to
-    <TimePicker value={max} />
+    <TimePicker value={max} variablePath={variablePath.concat(['max'])} />
   </FormGroup>
 );
 

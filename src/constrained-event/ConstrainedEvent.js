@@ -4,29 +4,30 @@ import TimeRange from '../time/TimeRange';
 import DurationRange from '../duration/DurationRange';
 import './ConstrainedEvent.css';
 
-const ConstrainedEvent = ({ event }) => (
+const ConstrainedEvent = ({ event, variablePath }) => (
   <div className="ConstrainedEvent">
     <span className="ConstrainedEvent-name">{event.name}</span>
     <label>
       <span className="ConstrainedEvent-field">Duration</span>
-      <DurationRange {...extractMinAndMax('duration', event)} />
+      <DurationRange {...extractRangeProps('duration', event, variablePath)} />
     </label>
 
     <label>
       <span className="ConstrainedEvent-field">Start</span>
-      <TimeRange {...extractMinAndMax('start', event)} />
+      <TimeRange {...extractRangeProps('start', event, variablePath)} />
     </label>
     <label>
       <span className="ConstrainedEvent-field">End</span>
-      <TimeRange {...extractMinAndMax('end', event)} />
+      <TimeRange {...extractRangeProps('end', event, variablePath)} />
     </label>
   </div>
 );
 
-function extractMinAndMax(varName, event) {
+function extractRangeProps(varName, event, variablePath) {
   return {
     min: event.getIn([varName, 'min']),
     max: event.getIn([varName, 'max']),
+    variablePath: variablePath.concat([varName])
   }
 }
 
