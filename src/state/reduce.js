@@ -1,10 +1,12 @@
-import { INITIALISE_STATE } from './StateActions';
+import {fromJS} from 'immutable';
 
-const initialState = { constrainedEvents: [], eventContext: {} };
+import {INITIALISE_STATE} from './StateActions';
+
+const initialState = fromJS({ constrainedEvents: [], eventContext: {} });
 
 export default function reduce(state = initialState, action) {
   switch (action.type) {
-    case INITIALISE_STATE: return action.state;
+    case INITIALISE_STATE: return fromJS(action.state);
     default:               return state;
   }
 }

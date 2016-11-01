@@ -18,7 +18,7 @@ export const App = ({ events }) => (
 );
 
 const mapStateToProps = state => {
-  return { events: state.constrainedEvents };
+  return { events: state.get('constrainedEvents') };
 };
 
 export default connect(mapStateToProps)(App);

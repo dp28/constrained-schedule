@@ -9,18 +9,25 @@ const ConstrainedEvent = ({ event }) => (
     <span className="ConstrainedEvent-name">{event.name}</span>
     <label>
       <span className="ConstrainedEvent-field">Duration</span>
-      <DurationRange {...event.duration} />
+      <DurationRange {...extractMinAndMax('duration', event)} />
     </label>
 
     <label>
       <span className="ConstrainedEvent-field">Start</span>
-      <TimeRange {...event.start} />
+      <TimeRange {...extractMinAndMax('start', event)} />
     </label>
     <label>
       <span className="ConstrainedEvent-field">End</span>
-      <TimeRange {...event.end} />
+      <TimeRange {...extractMinAndMax('end', event)} />
     </label>
   </div>
 );
+
+function extractMinAndMax(varName, event) {
+  return {
+    min: event.getIn([varName, 'min']),
+    max: event.getIn([varName, 'max']),
+  }
+}
 
 export default ConstrainedEvent;

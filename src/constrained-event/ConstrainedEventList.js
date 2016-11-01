@@ -4,7 +4,7 @@ import {ListGroup, ListGroupItem} from 'react-bootstrap';
 import ConstrainedEvent from './ConstrainedEvent';
 
 const ListItem = event => (
-  <ListGroupItem key={event.id}>
+  <ListGroupItem key={event.get('id')}>
     <ConstrainedEvent event={event} />
   </ListGroupItem>
 );
