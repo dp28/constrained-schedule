@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {FormGroup} from 'react-bootstrap';
+import {FormGroup, FormControl} from 'react-bootstrap';
 
 import {updateValue} from '../state/StateActionCreators';
 import {extractMinutesPerUnit} from '../event-context/event-context-utils';
@@ -9,23 +9,32 @@ import SelectInt from '../select-int/SelectInt';
 
 import './TimePicker.css';
 
-export const TimePicker = ({ dateTime, variablePath, minutesPerUnit, onHourChange, onMinuteChange }) => (
-  <FormGroup className="TimePicker">
-    <SelectInt
-      end={24}
-      selected={dateTime.getHours()}
-      onChange={onHourChange(variablePath, dateTime)}
-      display={pad}
-    />
-    <SelectInt
-      end={60}
-      selected={Math.round(dateTime.getMinutes())}
-      step={minutesPerUnit}
-      onChange={onMinuteChange(variablePath, dateTime)}
-      display={pad}
-    />
-  </FormGroup>
-);
+export const TimePicker = ({ dateTime, variablePath, minutesPerUnit, buildHandlers }) => {
+  const handlers = buildHandlers(variablePath, dateTime);
+
+  return (
+    <FormGroup className="TimePicker">
+      <FormControl
+        type="date"
+        value={getDateString(dateTime)}
+        onChange={handlers.onDateChange}
+      />
+      <SelectInt
+        end={24}
+        selected={dateTime.getHours()}
+        onChange={handlers.onHourChange}
+        display={pad}
+      />
+      <SelectInt
+        end={60}
+        selected={Math.round(dateTime.getMinutes())}
+        step={minutesPerUnit}
+        onChange={handlers.onMinuteChange}
+        display={pad}
+      />
+    </FormGroup>
+  );
+}
 
 function pad(integer) {
   return integer < 10 ? `0${integer}` : String(integer);
@@ -33,13 +42,21 @@ function pad(integer) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onHourChange: (variablePath, date) => withEventValue(hours => (
-      dispatch(updateValue(variablePath, addHours(hours, date)))
-    )),
-    onMinuteChange: (variablePath, date) => withEventValue(minutes => (
-      dispatch(updateValue(variablePath, addMinutes(minutes, date)))
-    ))
-  };
+    buildHandlers: (variablePath, date) => {
+      const handle = func => withEventValue(value =>
+        dispatch(updateValue(variablePath, func(value, date)))
+      );
+      return {
+        onHourChange: handle(addHours),
+        onMinuteChange: handle(addMinutes),
+        onDateChange: handle(changeDate),
+      }
+    }
+  }
+}
+
+function getDateString(date) {
+  return date.toISOString().substring(0, 10);
 }
 
 function addHours(hours, date) {
@@ -52,6 +69,13 @@ function addMinutes(minutes, date) {
   const copy = copyDate(date);
   copy.setMinutes(minutes);
   return copy;
+}
+
+function changeDate(dateString, date) {
+  const newDate = new Date(dateString);
+  newDate.setHours(date.getHours());
+  newDate.setMinutes(date.getMinutes());
+  return newDate;
 }
 
 function copyDate(date) {
