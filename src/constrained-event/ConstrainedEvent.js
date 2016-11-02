@@ -1,11 +1,14 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
+import {connect} from 'react-redux';
 
 import TimeRange from '../time/TimeRange';
 import DurationRange from '../duration/DurationRange';
 import TextInput from '../text/TextInput';
+import {deleteEvent as unboundDeleteEvent} from './ConstrainedEventActionCreators';
 import './ConstrainedEvent.css';
 
-const ConstrainedEvent = ({ event, variablePath }) => (
+const ConstrainedEvent = ({ event, variablePath, deleteEvent }) => (
   <div className="ConstrainedEvent">
     <TextInput text={event.get('name')} variablePath={variablePath.concat(['name'])} />
     <label>
@@ -21,6 +24,7 @@ const ConstrainedEvent = ({ event, variablePath }) => (
       <span className="ConstrainedEvent-field">End</span>
       <TimeRange {...extractRangeProps('end', event, variablePath)} />
     </label>
+    <Button bsStyle="danger" onClick={deleteEvent(event)}> Delete </Button>
   </div>
 );
 
@@ -32,4 +36,10 @@ function extractRangeProps(varName, event, variablePath) {
   }
 }
 
-export default ConstrainedEvent;
+export function mapDispatchToProps(dispatch) {
+  return {
+    deleteEvent: event => () => dispatch(unboundDeleteEvent(event.get('id')))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ConstrainedEvent);
