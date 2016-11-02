@@ -6,8 +6,8 @@ export default {
       max: new Date(2016, 8, 26, 0, 0)
     }
   },
-  constrainedEvents: [
-    {
+  constrainedEvents: {
+    work1: {
       id: `work1`,
       name: `work`,
       start: {
@@ -23,7 +23,7 @@ export default {
         max: 58
       }
     },
-    {
+    work2: {
       id: `work2`,
       name: `work`,
       start: {
@@ -39,7 +39,7 @@ export default {
         max: 58
       }
     },
-    {
+    work3: {
       id: `work3`,
       name: `work`,
       start: {
@@ -55,7 +55,7 @@ export default {
         max: 58
       }
     },
-    {
+    work4: {
       id: `work4`,
       name: `work`,
       start: {
@@ -71,7 +71,7 @@ export default {
         max: 58
       }
     },
-    {
+    work5: {
       id: `work5`,
       name: `work`,
       start: {
@@ -87,5 +87,5 @@ export default {
         max: 58
       }
     }
-  ]
+  }
 }

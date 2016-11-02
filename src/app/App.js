@@ -5,12 +5,12 @@ import {connect} from 'react-redux';
 import ConstrainedEventList from '../constrained-event/ConstrainedEventList';
 import './App.css';
 
-export const App = ({ events }) => (
+export const App = ({ eventMap }) => (
   <div className="App">
     <Grid>
       <Row>
         <Col xs={12} sm={8}>
-          <ConstrainedEventList events={events} variablePath={['constrainedEvents']} />
+          <ConstrainedEventList eventMap={eventMap} variablePath={['constrainedEvents']} />
         </Col>
       </Row>
     </Grid>
@@ -18,7 +18,7 @@ export const App = ({ events }) => (
 );
 
 const mapStateToProps = state => {
-  return { events: state.get('constrainedEvents') };
+  return { eventMap: state.get('constrainedEvents') };
 };
 
 export default connect(mapStateToProps)(App);
