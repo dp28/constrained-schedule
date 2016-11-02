@@ -3,15 +3,15 @@ import {ListGroup, ListGroupItem} from 'react-bootstrap';
 
 import ConstrainedEvent from './ConstrainedEvent';
 
-const ListItem = (event, index) => (
+const ListItem = variablePath => (event, index) => (
   <ListGroupItem key={event.get('id')}>
-    <ConstrainedEvent event={event} variablePath={[index]} />
+    <ConstrainedEvent event={event} variablePath={variablePath.concat([index])} />
   </ListGroupItem>
 );
 
-const ConstrainedEventList = ({ events }) => (
+const ConstrainedEventList = ({ events, variablePath }) => (
   <ListGroup>
-    {events.map(ListItem)}
+    {events.map(ListItem(variablePath))}
   </ListGroup>
 );
 

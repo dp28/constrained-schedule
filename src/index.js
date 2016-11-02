@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 
 import store from './state/store';
 import initialState from './state/example';
-import { initialiseState } from './state/StateActions';
+import { initialiseState } from './state/StateActionCreators';
 import App from './app/App';
 import './index.css';
 

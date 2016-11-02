@@ -2,11 +2,12 @@ import React from 'react';
 
 import TimeRange from '../time/TimeRange';
 import DurationRange from '../duration/DurationRange';
+import TextInput from '../text/TextInput';
 import './ConstrainedEvent.css';
 
 const ConstrainedEvent = ({ event, variablePath }) => (
   <div className="ConstrainedEvent">
-    <span className="ConstrainedEvent-name">{event.name}</span>
+    <TextInput text={event.get('name')} variablePath={variablePath.concat(['name'])} />
     <label>
       <span className="ConstrainedEvent-field">Duration</span>
       <DurationRange {...extractRangeProps('duration', event, variablePath)} />

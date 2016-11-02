@@ -2,8 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {FormGroup} from 'react-bootstrap';
 
-import {updateTime} from './TimeActionCreators';
+import {updateValue} from '../state/StateActionCreators';
 import {extractMinutesPerUnit} from '../event-context/event-context-utils';
+import {withEventValue} from '../utils/dom';
 import SelectInt from '../select-int/SelectInt';
 
 import './TimePicker.css';
@@ -26,10 +27,6 @@ export const TimePicker = ({ dateTime, variablePath, minutesPerUnit, onHourChang
   </FormGroup>
 );
 
-function withEventValue(func) {
-  return ({ target }) => func(target.value);
-}
-
 function pad(integer) {
   return integer < 10 ? `0${integer}` : String(integer);
 }
@@ -37,10 +34,10 @@ function pad(integer) {
 function mapDispatchToProps(dispatch) {
   return {
     onHourChange: (variablePath, date) => withEventValue(hours => (
-      dispatch(updateTime(variablePath, addHours(hours, date)))
+      dispatch(updateValue(variablePath, addHours(hours, date)))
     )),
     onMinuteChange: (variablePath, date) => withEventValue(minutes => (
-      dispatch(updateTime(variablePath, addMinutes(minutes, date)))
+      dispatch(updateValue(variablePath, addMinutes(minutes, date)))
     ))
   };
 }

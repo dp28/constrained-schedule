@@ -10,7 +10,7 @@ export const App = ({ events }) => (
     <Grid>
       <Row>
         <Col xs={12} sm={8}>
-          <ConstrainedEventList events={events} />
+          <ConstrainedEventList events={events} variablePath={['constrainedEvents']} />
         </Col>
       </Row>
     </Grid>

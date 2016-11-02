@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {FormControl} from 'react-bootstrap';
 
-import {updateDuration} from './DurationActionCreators';
+import {updateValue} from '../state/StateActionCreators';
 import {extractMinutesPerUnit} from '../event-context/event-context-utils';
 import './DurationPicker.css';
 
@@ -23,7 +23,7 @@ function scale(time, minutesPerUnit) {
 function mapDispatchToProps(dispatch) {
   return {
     onChange: (variablePath, minutesPerUnit) => ({ target }) => {
-      return dispatch(updateDuration(variablePath, Number(target.value) / minutesPerUnit))
+      return dispatch(updateValue(variablePath, Number(target.value) / minutesPerUnit))
     }
   };
 }
