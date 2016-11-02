@@ -7,6 +7,7 @@ import {extractMinutesPerUnit} from '../event-context/event-context-utils';
 import {withEventValue} from '../utils/dom';
 import SelectInt from '../select-int/SelectInt';
 
+import {setMinutes, setHours, changeDate} from '../utils/time';
 import './TimePicker.css';
 
 export const TimePicker = ({ dateTime, variablePath, minutesPerUnit, buildHandlers }) => {
@@ -47,8 +48,8 @@ function mapDispatchToProps(dispatch) {
         dispatch(updateValue(variablePath, func(value, date)))
       );
       return {
-        onHourChange: handle(addHours),
-        onMinuteChange: handle(addMinutes),
+        onHourChange: handle(setHours),
+        onMinuteChange: handle(setMinutes),
         onDateChange: handle(changeDate),
       }
     }
@@ -57,29 +58,6 @@ function mapDispatchToProps(dispatch) {
 
 function getDateString(date) {
   return date.toISOString().substring(0, 10);
-}
-
-function addHours(hours, date) {
-  const copy = copyDate(date);
-  copy.setHours(hours);
-  return copy;
-}
-
-function addMinutes(minutes, date) {
-  const copy = copyDate(date);
-  copy.setMinutes(minutes);
-  return copy;
-}
-
-function changeDate(dateString, date) {
-  const newDate = new Date(dateString);
-  newDate.setHours(date.getHours());
-  newDate.setMinutes(date.getMinutes());
-  return newDate;
-}
-
-function copyDate(date) {
-  return new Date(date.getTime());
 }
 
 export default connect(extractMinutesPerUnit, mapDispatchToProps)(TimePicker);
