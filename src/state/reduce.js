@@ -3,7 +3,7 @@ import {fromJS} from 'immutable';
 import {INITIALISE_STATE, UPDATE_VALUE} from './StateActionCreators';
 import reduceEvents from '../constrained-event/ConstrainedEventReducer';
 
-const initialState = fromJS({ constrainedEvents: [], eventContext: {} });
+const initialState = fromJS({ constrainedEvents: [], eventContext: {}, selectedEventIds: [] });
 
 export default function reduce(state = initialState, action) {
   switch (action.type) {

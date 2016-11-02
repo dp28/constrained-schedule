@@ -1,6 +1,6 @@
 import {createSelector} from 'reselect';
 
-const getEventMap = stateOrEvents => stateOrEvents.get('constrainedEvents') || stateOrEvents;
+export const getEventMap = stateOrEvents => stateOrEvents.get('constrainedEvents') || stateOrEvents;
 
 export const getSortedEvents = createSelector(
   getEventMap,

@@ -1,4 +1,5 @@
 export default {
+  selectedEventIds: [],
   eventContext: {
     minutesPerUnit: 15,
     range: {
