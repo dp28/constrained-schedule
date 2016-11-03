@@ -1,21 +1,31 @@
 import {fromJS} from 'immutable';
 
 import {INITIALISE_STATE, UPDATE_VALUE} from './StateActionCreators';
-import reduceEvents from '../constrained-event/ConstrainedEventReducer';
-import reduceSelectedEvents from '../selected-events/SelectedEventReducer';
+import constrainedEvents from '../constrained-event/ConstrainedEventReducer';
+import selectedEventIds from '../selected-events/SelectedEventReducer';
+import constraints from '../constraint/ConstraintReducer';
 
-const initialState = fromJS({ constrainedEvents: [], eventContext: {}, selectedEventIds: [] });
+const reduceStateTree = reduceParts({ constrainedEvents, selectedEventIds, constraints });
 
-export default function reduce(state = initialState, action) {
+export default function reduce(state = fromJS({}), action) {
   switch (action.type) {
     case INITIALISE_STATE: return fromJS(action.state);
     case UPDATE_VALUE:     return state.setIn(action.variablePath, action.value);
-    default:               return reduceParts(state, action);
+    default:               return reduceStateTree(state, action);
   }
 }
 
-function reduceParts(state, action) {
-  return state
-    .set('constrainedEvents', reduceEvents(state.get('constrainedEvents'), action))
-    .set('selectedEventIds', reduceSelectedEvents(state.get('selectedEventIds'), action));
+function reduceParts(reducerMap) {
+  return (state, action) => (
+    Object
+      .keys(reducerMap)
+      .reduce(applyReducer(reducerMap, action), state)
+  )
+}
+
+function applyReducer(reducerMap, action) {
+  return (state, reducerKey) => {
+    const reduce = reducerMap[reducerKey];
+    return state.set(reducerKey, reduce(state.get(reducerKey), action));
+  }
 }

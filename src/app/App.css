@@ -1,0 +1,14 @@
+.full-height {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.App-main-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.App-event-column {
+  overflow-y: auto;
+  flex-grow: 1;
+}
