@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 
 import ConstrainedEventList from '../constrained-event/ConstrainedEventList';
-import SelectedEvents from '../selected-events/SelectedEvents';
+import ConstraintBuilder from '../constraint-builder/ConstraintBuilder';
 import './App.css';
 
 const App = ({ eventMap }) => (
@@ -10,7 +10,7 @@ const App = ({ eventMap }) => (
     <Grid>
       <Row>
         <Col xs={12} sm={4}>
-          <SelectedEvents />
+          <ConstraintBuilder />
         </Col>
         <Col xs={12} sm={8}>
           <ConstrainedEventList />

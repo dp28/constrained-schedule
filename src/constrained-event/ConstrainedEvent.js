@@ -5,10 +5,11 @@ import {connect} from 'react-redux';
 import TimeRange from '../time/TimeRange';
 import DurationRange from '../duration/DurationRange';
 import TextInput from '../text/TextInput';
-import {deleteEvent as unboundDeleteEvent} from './ConstrainedEventActionCreators';
+import {toggleEventSelected} from '../selected-events/SelectedEventActionCreators';
+import {deleteEvent} from './ConstrainedEventActionCreators';
 import './ConstrainedEvent.css';
 
-const ConstrainedEvent = ({ event, variablePath, deleteEvent }) => (
+const ConstrainedEvent = ({ event, variablePath, remove, toggleSelected }) => (
   <div className="ConstrainedEvent">
     <TextInput text={event.get('name')} variablePath={variablePath.concat(['name'])} />
     <label>
@@ -24,7 +25,8 @@ const ConstrainedEvent = ({ event, variablePath, deleteEvent }) => (
       <span className="ConstrainedEvent-field">End</span>
       <TimeRange {...extractRangeProps('end', event, variablePath)} />
     </label>
-    <Button bsStyle="danger" onClick={deleteEvent(event)}> Delete </Button>
+    <Button bsStyle="danger" onClick={remove(event)}> Delete </Button>
+    <Button onClick={toggleSelected(event)}> Select </Button>
   </div>
 );
 
@@ -38,7 +40,8 @@ function extractRangeProps(varName, event, variablePath) {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    deleteEvent: event => () => dispatch(unboundDeleteEvent(event.get('id')))
+    remove: event => () => dispatch(deleteEvent(event.get('id'))),
+    toggleSelected: event => () => dispatch(toggleEventSelected(event.get('id')))
   }
 }
 
