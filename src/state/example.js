@@ -1,6 +1,6 @@
 export default {
   selectedEventIds: [],
-  constraints: [],
+  constraints: {},
   eventContext: {
     minutesPerUnit: 15,
     range: {

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Panel, Button} from 'react-bootstrap';
 
-import SelectedEvents from '../selected-events/SelectedEvents';
+import EventList from '../event-list/EventList';
 import {getSelectedEvents} from '../selected-events/SelectedEventSelectors';
 import {canCreateConstraints} from '../constraint/ConstraintSelectors';
 import {createConstraint} from '../constraint/ConstraintActionCreators';
@@ -10,7 +10,7 @@ import {createConstraint} from '../constraint/ConstraintActionCreators';
 export const ConstraintBuilder = ({ create, selectedEvents, cannotCreateConstraints }) => (
   <Panel className="ConstraintBuilder">
     Selected events:
-    <SelectedEvents events={selectedEvents} />
+    <EventList events={selectedEvents} />
     <Button
       bsStyle="primary"
       onClick={create(selectedEvents)}

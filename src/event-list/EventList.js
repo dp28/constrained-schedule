@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const SelectedEvents = ({ events }) => (
+export const EventList = ({ events }) => (
   <ul>
     {events.map(ListItem)}
   </ul>
@@ -10,4 +10,4 @@ function ListItem(event) {
   return <li key={event.get('id')}>{event.get('name')}</li>;
 }
 
-export default SelectedEvents;
+export default EventList;
