@@ -3,17 +3,17 @@ import {fromJS} from 'immutable';
 
 import {getFirstEvent} from './ConstrainedEventSelectors';
 import {buildTimeRange} from '../utils/time';
-import {DELETE_EVENT, ADD_EVENT} from './ConstrainedEventActionCreators';
+import {DELETE_EVENT, CREATE_EVENT} from './ConstrainedEventActionCreators';
 
 export default function reduce(eventMap = fromJS({}), action) {
   switch (action.type) {
-    case ADD_EVENT:    return addEvent(eventMap);
+    case CREATE_EVENT:    return createEvent(eventMap);
     case DELETE_EVENT: return eventMap.delete(action.id);
     default:           return eventMap;
   }
 }
 
-function addEvent(eventMap) {
+function createEvent(eventMap) {
   const id = generateId();
   const sourceEvent = findSourceEvent(eventMap);
   return eventMap.set(id, sourceEvent.merge({ id, name: 'New event', createdAt: new Date() }));
