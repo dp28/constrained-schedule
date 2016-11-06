@@ -1,5 +1,6 @@
 import {fromJS} from 'immutable';
 
+import {removeValue} from '../utils/immutable';
 import {DELETE_EVENT} from '../constrained-event/ConstrainedEventActionCreators';
 import {CREATE_CONSTRAINT} from '../constraint/ConstraintActionCreators';
 import {TOGGLE_EVENT_SELECTED} from './SelectedEventActionCreators';
@@ -17,8 +18,4 @@ export default function reduce(selectedEventIds = emptyList, action) {
 
 function toggleInclusion(value, list) {
   return list.includes(value) ? removeValue(value, list) : list.push(value);
-}
-
-function removeValue(valueToRemove, list) {
-  return list.filter(value => value !== valueToRemove)
 }
