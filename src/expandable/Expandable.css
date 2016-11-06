@@ -1,0 +1,18 @@
+.Expandable-always-visible  {
+  display: table;
+}
+
+.Expandable-always-visible  {
+  display: table;
+  width: 100%;
+}
+
+.Expander {
+  display: table-cell;
+}
+
+.Expandable-always-visible-content {
+  display: table-cell;
+  width: 100%;
+  padding-left: 10px;
+}

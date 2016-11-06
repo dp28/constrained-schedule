@@ -3,17 +3,20 @@ import {connect} from 'react-redux';
 import {Button, Glyphicon} from 'react-bootstrap';
 
 import {expandElement, unexpandElement} from './ExpandableActionCreators';
+import './Expandable.css'
 
 const Expander = ({ toggleExpand, isExpanded }) => (
-  <Button onClick={toggleExpand(isExpanded)}>
+  <Button bsClass="btn btn-default Expander" onClick={toggleExpand(isExpanded)}>
     <Glyphicon glyph={isExpanded ? 'chevron-down' : 'chevron-right'} />
   </Button>
 )
 
 export const Expandable = ({ unexpanded, expanded, isExpanded, toggleExpand, alwaysVisible }) => (
-  <div className="expandable">
-    <Expander isExpanded={isExpanded} toggleExpand={toggleExpand} />
-    <div className="Expandable-always-visible">{alwaysVisible}</div>
+  <div className="Expandable">
+    <div className="Expandable-always-visible">
+      <Expander isExpanded={isExpanded} toggleExpand={toggleExpand} />
+      <div className="Expandable-always-visible-content">{alwaysVisible}</div>
+    </div>
     {isExpanded || <div className="Expandable-unexpanded">{unexpanded}</div>}
     {isExpanded && <div className="Expandable-expanded">{expanded}</div>}
   </div>

@@ -7,3 +7,19 @@
   font-weight: normal;
   display: block;
 }
+
+.ConstrainedEvent-summary {
+  display: table;
+  width: 100%;
+}
+
+.ConstrainedEvent-summary button {
+  display: table-cell;
+  width: auto;
+  padding-right: 10px;
+}
+
+.ConstrainedEvent-summary p {
+  display: table-cell;
+  width: 100%;
+}
