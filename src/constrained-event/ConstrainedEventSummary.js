@@ -1,15 +1,24 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import {Button, Glyphicon} from 'react-bootstrap';
 import {connect} from 'react-redux';
 
+import {getIsEventSelected} from '../selected-events/SelectedEventSelectors';
 import {toggleEventSelected} from '../selected-events/SelectedEventActionCreators';
 
-const ConstrainedEventSummary = ({ event, toggleSelected }) => (
+const ConstrainedEventSummary = ({ event, toggleSelected, isSelected }) => (
   <div className="ConstrainedEvent-summary">
     <p>{event.get('name')}</p>
-    <Button onClick={toggleSelected}> Select </Button>
+    <Button onClick={toggleSelected}>
+      <Glyphicon glyph={isSelected ? 'check' : 'unchecked'} />
+    </Button>
   </div>
 );
+
+export function mapStateToProps(state, { event }) {
+  return {
+    isSelected: getIsEventSelected(state)(event.get('id'))
+  };
+}
 
 export function mapDispatchToProps(dispatch, { event }) {
   return {
@@ -17,4 +26,4 @@ export function mapDispatchToProps(dispatch, { event }) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ConstrainedEventSummary);
+export default connect(mapStateToProps, mapDispatchToProps)(ConstrainedEventSummary);

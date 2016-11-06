@@ -16,7 +16,7 @@
 .ConstrainedEvent-summary button {
   display: table-cell;
   width: auto;
-  padding-right: 10px;
+  margin-right: 10px;
 }
 
 .ConstrainedEvent-summary p {
