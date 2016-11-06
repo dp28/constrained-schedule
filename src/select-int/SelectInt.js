@@ -1,17 +1,29 @@
 import React from 'react';
 import {FormGroup, FormControl} from 'react-bootstrap';
 
-const SelectInt = ({ start = 0, end, step = 1, selected = null, unit = '', onChange, display = displayAsIs }) => (
-  <FormGroup>
-    <FormControl componentClass="select" onChange={onChange} defaultValue={selected}>
-      {buildSteps(start, end, step).map(stepValue => (
-        <option value={stepValue} key={stepValue}>
-          {display(stepValue)} {unit}
-        </option>
-      ))}
-    </FormControl>
-  </FormGroup>
-)
+export default SelectInt;
+
+export function SelectInt({
+  start = 0,
+  end,
+  step = 1,
+  selected = null,
+  unit = '',
+  onChange,
+  display = displayAsIs
+}) {
+  return (
+    <FormGroup>
+      <FormControl componentClass="select" onChange={onChange} defaultValue={selected}>
+        {buildSteps(start, end, step).map(stepValue => (
+          <option value={stepValue} key={stepValue}>
+            {display(stepValue)} {unit}
+          </option>
+        ))}
+      </FormControl>
+    </FormGroup>
+  );
+}
 
 function buildSteps(start, end, step) {
   let steps = [];
@@ -25,5 +37,3 @@ function buildSteps(start, end, step) {
 function displayAsIs(value) {
   return value;
 }
-
-export default SelectInt;

@@ -4,7 +4,9 @@ import {FormGroup} from 'react-bootstrap';
 import DurationPicker from './DurationPicker';
 import './DurationRange.css';
 
-const DurationRange = ({ min, max, variablePath }) => {
+export default DurationRange;
+
+export function DurationRange({ min, max, variablePath }) {
   return (
     <FormGroup className="DurationRange">
       <DurationPicker value={min} variablePath={variablePath.concat(['min'])} />
@@ -13,6 +15,4 @@ const DurationRange = ({ min, max, variablePath }) => {
       minutes
     </FormGroup>
   );
-};
-
-export default DurationRange;
+}

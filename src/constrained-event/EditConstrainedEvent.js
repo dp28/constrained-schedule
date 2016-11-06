@@ -7,26 +7,29 @@ import DurationRange from '../duration/DurationRange';
 import TextInput from '../text/TextInput';
 import {deleteEvent} from './ConstrainedEventActionCreators';
 
-const EditConstrainedEvent = ({ event, variablePath, remove }) => (
-  <div >
-    <TextInput text={event.get('name')} variablePath={variablePath.concat(['name'])} />
-    <label>
-      <span className="ConstrainedEvent-field">Duration</span>
-      <DurationRange {...extractRangeProps('duration', event, variablePath)} />
-    </label>
+export default connect(null, mapDispatchToProps)(EditConstrainedEvent);
 
-    <label>
-      <span className="ConstrainedEvent-field">Start</span>
-      <TimeRange {...extractRangeProps('start', event, variablePath)} />
-    </label>
-    <label>
-      <span className="ConstrainedEvent-field">End</span>
-      <TimeRange {...extractRangeProps('end', event, variablePath)} />
-    </label>
-    <Button bsStyle="danger" onClick={remove}> Delete </Button>
-  </div>
+export function EditConstrainedEvent({ event, variablePath, remove }) {
+  return (
+    <div >
+      <TextInput text={event.get('name')} variablePath={variablePath.concat(['name'])} />
+      <label>
+        <span className="ConstrainedEvent-field">Duration</span>
+        <DurationRange {...extractRangeProps('duration', event, variablePath)} />
+      </label>
 
-);
+      <label>
+        <span className="ConstrainedEvent-field">Start</span>
+        <TimeRange {...extractRangeProps('start', event, variablePath)} />
+      </label>
+      <label>
+        <span className="ConstrainedEvent-field">End</span>
+        <TimeRange {...extractRangeProps('end', event, variablePath)} />
+      </label>
+      <Button bsStyle="danger" onClick={remove}> Delete </Button>
+    </div>
+  );
+}
 
 function extractRangeProps(varName, event, variablePath) {
   return {
@@ -41,5 +44,3 @@ export function mapDispatchToProps(dispatch, { event }) {
     remove: () => dispatch(deleteEvent(event.get('id')))
   }
 }
-
-export default connect(null, mapDispatchToProps)(EditConstrainedEvent);

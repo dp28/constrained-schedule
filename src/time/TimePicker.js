@@ -10,7 +10,9 @@ import SelectInt from '../select-int/SelectInt';
 import {setMinutes, setHours, changeDate} from '../utils/time';
 import './TimePicker.css';
 
-export const TimePicker = ({ dateTime, variablePath, minutesPerUnit, buildHandlers }) => {
+export default connect(extractMinutesPerUnit, mapDispatchToProps)(TimePicker);
+
+export function TimePicker({ dateTime, variablePath, minutesPerUnit, buildHandlers }) {
   const handlers = buildHandlers(variablePath, dateTime);
 
   return (
@@ -41,7 +43,7 @@ function pad(integer) {
   return integer < 10 ? `0${integer}` : String(integer);
 }
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
     buildHandlers: (variablePath, date) => {
       const handle = func => withEventValue(value =>
@@ -59,5 +61,3 @@ function mapDispatchToProps(dispatch) {
 function getDateString(date) {
   return date.toISOString().substring(0, 10);
 }
-
-export default connect(extractMinutesPerUnit, mapDispatchToProps)(TimePicker);

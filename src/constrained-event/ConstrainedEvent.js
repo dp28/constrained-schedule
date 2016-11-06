@@ -5,14 +5,16 @@ import Summary from './ConstrainedEventSummary';
 import EditEvent from './EditConstrainedEvent';
 import './ConstrainedEvent.css';
 
-const ConstrainedEvent = (props) => (
-  <div className="ConstrainedEvent">
-    <Expandable
-      id={props.event.get('id')}
-      alwaysVisible={<Summary event={props.event} />}
-      expanded={<EditEvent {...props} />}
-    />
-  </div>
-);
-
 export default ConstrainedEvent;
+
+export function ConstrainedEvent(props) {
+  return (
+    <div className="ConstrainedEvent">
+      <Expandable
+        id={props.event.get('id')}
+        alwaysVisible={<Summary event={props.event} />}
+        expanded={<EditEvent {...props} />}
+      />
+    </div>
+  );
+}

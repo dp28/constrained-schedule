@@ -6,23 +6,25 @@ import ConstraintBuilder from '../constraint-builder/ConstraintBuilder';
 import ConstraintList from '../constraint/ConstraintList';
 import './App.css';
 
-const App = ({ eventMap }) => (
-  <div className="App">
-    <Grid>
-      <Row>
-        <Col xs={12} sm={4}>
-          <ConstraintBuilder />
-        </Col>
-        <Col xs={12} sm={4}>
-          Constraints:
-          <ConstraintList />
-        </Col>
-        <Col xs={12} sm={8}>
-          <ConstrainedEventList />
-        </Col>
-      </Row>
-    </Grid>
-  </div>
-);
-
 export default App;
+
+export function App({ eventMap }) {
+  return (
+    <div className="App">
+      <Grid>
+        <Row>
+          <Col xs={12} sm={4}>
+            <ConstraintBuilder />
+          </Col>
+          <Col xs={12} sm={4}>
+            Constraints:
+            <ConstraintList />
+          </Col>
+          <Col xs={12} sm={8}>
+            <ConstrainedEventList />
+          </Col>
+        </Row>
+      </Grid>
+    </div>
+  );
+}

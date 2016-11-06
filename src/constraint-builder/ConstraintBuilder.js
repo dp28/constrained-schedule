@@ -10,27 +10,31 @@ import {getSelectedEvents} from '../selected-events/SelectedEventSelectors';
 import {canCreateConstraints} from '../constraint/ConstraintSelectors';
 import {createConstraint} from '../constraint/ConstraintActionCreators';
 
-export const ConstraintBuilder = ({
+export default connect(mapStateToProps, mapDispatchToProps)(ConstraintBuilder);
+
+export function ConstraintBuilder({
   create,
   selectedEvents,
   selectedType,
   selectType,
   cannotCreateConstraints
-}) => (
-  <Panel className="ConstraintBuilder">
-    Constraint type:
-    <SelectConstraintType onChange={selectType} selected={selectedType} />
-    Selected events:
-    <EventList events={selectedEvents} />
-    <Button
-      bsStyle="primary"
-      onClick={create(selectedEvents, selectedType)}
-      disabled={cannotCreateConstraints}
-    >
-      Create constraint
-    </Button>
-  </Panel>
-)
+}) {
+  return (
+    <Panel className="ConstraintBuilder">
+      Constraint type:
+      <SelectConstraintType onChange={selectType} selected={selectedType} />
+      Selected events:
+      <EventList events={selectedEvents} />
+      <Button
+        bsStyle="primary"
+        onClick={create(selectedEvents, selectedType)}
+        disabled={cannotCreateConstraints}
+      >
+        Create constraint
+      </Button>
+    </Panel>
+  );
+}
 
 export function mapStateToProps(state) {
   return {
@@ -46,5 +50,3 @@ export function mapDispatchToProps(dispatch) {
     selectType: type => dispatch(selectConstraintType(type))
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(ConstraintBuilder);
