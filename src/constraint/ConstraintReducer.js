@@ -14,9 +14,13 @@ export default function reduce(constraintMap = fromJS({}), action) {
   }
 }
 
+export function buildConstraint(eventIds, type, id = null) {
+  return fromJS({ id, eventIds, type });
+}
+
 function createConstraint(constraintMap, { eventIds, constraintType }) {
   const id = generateId();
-  return constraintMap.set(id, fromJS({ id, eventIds, type: constraintType }));
+  return constraintMap.set(id, buildConstraint(eventIds, constraintType, id));
 }
 
 function deleteEventReferences(constraintMap, eventId) {
