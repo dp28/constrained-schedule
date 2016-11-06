@@ -5,12 +5,20 @@ import {FormGroup, FormControl} from 'react-bootstrap';
 import {updateValue} from '../state/StateActionCreators';
 import {extractMinutesPerUnit} from '../event-context/event-context-utils';
 import {withEventValue} from '../utils/dom';
+import {VariablePath} from '../variable/VariablePropTypes';
 import SelectInt from '../select-int/SelectInt';
-
+import {DateTime} from './TimePropTypes';
 import {setMinutes, setHours, changeDate} from '../utils/time';
 import './TimePicker.css';
 
 export default connect(extractMinutesPerUnit, mapDispatchToProps)(TimePicker);
+
+TimePicker.propTypes = {
+  variablePath: VariablePath.isRequired,
+  dateTime: DateTime.isRequired,
+  minutesPerUnit: React.PropTypes.number.isRequired,
+  buildHandlers: React.PropTypes.func.isRequired
+}
 
 export function TimePicker({ dateTime, variablePath, minutesPerUnit, buildHandlers }) {
   const handlers = buildHandlers(variablePath, dateTime);

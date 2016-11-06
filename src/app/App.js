@@ -8,7 +8,7 @@ import './App.css';
 
 export default App;
 
-export function App({ eventMap }) {
+export function App() {
   return (
     <div className="App">
       <Grid>

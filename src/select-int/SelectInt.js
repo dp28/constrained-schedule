@@ -3,6 +3,16 @@ import {FormGroup, FormControl} from 'react-bootstrap';
 
 export default SelectInt;
 
+SelectInt.propTypes = {
+  end: React.PropTypes.number.isRequired,
+  onChange: React.PropTypes.func.isRequired,
+  start: React.PropTypes.number,
+  step: React.PropTypes.number,
+  selected: React.PropTypes.number,
+  unit: React.PropTypes.string,
+  display: React.PropTypes.func
+}
+
 export function SelectInt({
   start = 0,
   end,

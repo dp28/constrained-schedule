@@ -6,8 +6,14 @@ import {bindActionCreators} from 'redux';
 import {getSortedEvents} from './ConstrainedEventSelectors';
 import {createEvent as unboundCreateEvent} from './ConstrainedEventActionCreators';
 import ConstrainedEvent from './ConstrainedEvent';
+import {EventList} from './ConstrainedEventPropTypes';
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConstrainedEventList);
+
+ConstrainedEventList.propTypes = {
+  events: EventList,
+  createEvent: React.PropTypes.func.isRequired
+}
 
 export function ConstrainedEventList({ events, createEvent }) {
   return (

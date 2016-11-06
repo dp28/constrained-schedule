@@ -9,15 +9,24 @@ import {selectConstraintType} from '../constraint-type/ConstraintTypeActionCreat
 import {getSelectedEvents} from '../selected-events/SelectedEventSelectors';
 import {canCreateConstraints} from '../constraint/ConstraintSelectors';
 import {createConstraint} from '../constraint/ConstraintActionCreators';
+import * as EventPropTypes from '../constrained-event/ConstrainedEventPropTypes';
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConstraintBuilder);
 
+ConstraintBuilder.propTypes = {
+  create: React.PropTypes.func.isRequired,
+  selectType: React.PropTypes.func.isRequired,
+  selectedEvents: EventPropTypes.EventList.isRequired,
+  selectedType: React.PropTypes.string.isRequired,
+  cannotCreateConstraints: React.PropTypes.bool.isRequired
+}
+
 export function ConstraintBuilder({
-  create,
   selectedEvents,
   selectedType,
-  selectType,
-  cannotCreateConstraints
+  cannotCreateConstraints,
+  create,
+  selectType
 }) {
   return (
     <Panel className="ConstraintBuilder">

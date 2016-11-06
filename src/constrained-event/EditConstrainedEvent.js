@@ -5,9 +5,17 @@ import {connect} from 'react-redux';
 import TimeRange from '../time/TimeRange';
 import DurationRange from '../duration/DurationRange';
 import TextInput from '../text/TextInput';
+import {VariablePath} from '../variable/VariablePropTypes';
 import {deleteEvent} from './ConstrainedEventActionCreators';
+import {Event} from './ConstrainedEventPropTypes';
 
 export default connect(null, mapDispatchToProps)(EditConstrainedEvent);
+
+EditConstrainedEvent.propTypes = {
+  event: Event.isRequired,
+  variablePath: VariablePath.isRequired,
+  remove: React.PropTypes.func.isRequired
+}
 
 export function EditConstrainedEvent({ event, variablePath, remove }) {
   return (

@@ -7,6 +7,14 @@ import './Expandable.css'
 
 export default connect(mapStateToProps, mapDispatchToProps)(Expandable);
 
+Expandable.propTypes = {
+  expanded: React.PropTypes.node.isRequired,
+  isExpanded: React.PropTypes.bool.isRequired,
+  toggleExpand: React.PropTypes.func.isRequired,
+  unexpanded: React.PropTypes.node,
+  alwaysVisible: React.PropTypes.node
+}
+
 export function Expandable({ unexpanded, expanded, isExpanded, toggleExpand, alwaysVisible }) {
   return (
     <div className="Expandable">

@@ -1,6 +1,12 @@
 import React from 'react';
 
+import * as EventPropTypes from '../constrained-event/ConstrainedEventPropTypes';
+
 export default EventList;
+
+EventList.propTypes = {
+  events: EventPropTypes.EventList.isRequired
+}
 
 export function EventList({ events }) {
   return (
