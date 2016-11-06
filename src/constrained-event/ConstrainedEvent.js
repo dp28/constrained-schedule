@@ -12,26 +12,33 @@ import './ConstrainedEvent.css';
 
 const ConstrainedEvent = ({ event, variablePath, remove, toggleSelected }) => (
   <div className="ConstrainedEvent">
-    <Expandable unexpanded={<p>{event.get('name')}</p>} expanded={
-      <div>
-        <TextInput text={event.get('name')} variablePath={variablePath.concat(['name'])} />
-        <label>
-          <span className="ConstrainedEvent-field">Duration</span>
-          <DurationRange {...extractRangeProps('duration', event, variablePath)} />
-        </label>
+    <Expandable
+      id={event.get('id')}
+      alwaysVisible={
+        <div>
+          <p>{event.get('name')}</p>
+          <Button onClick={toggleSelected}> Select </Button>
+        </div>
+      }
+      expanded={
+        <div>
+          <TextInput text={event.get('name')} variablePath={variablePath.concat(['name'])} />
+          <label>
+            <span className="ConstrainedEvent-field">Duration</span>
+            <DurationRange {...extractRangeProps('duration', event, variablePath)} />
+          </label>
 
-        <label>
-          <span className="ConstrainedEvent-field">Start</span>
-          <TimeRange {...extractRangeProps('start', event, variablePath)} />
-        </label>
-        <label>
-          <span className="ConstrainedEvent-field">End</span>
-          <TimeRange {...extractRangeProps('end', event, variablePath)} />
-        </label>
-        <Button bsStyle="danger" onClick={remove}> Delete </Button>
-        <Button onClick={toggleSelected}> Select </Button>
-      </div>
-    } />
+          <label>
+            <span className="ConstrainedEvent-field">Start</span>
+            <TimeRange {...extractRangeProps('start', event, variablePath)} />
+          </label>
+          <label>
+            <span className="ConstrainedEvent-field">End</span>
+            <TimeRange {...extractRangeProps('end', event, variablePath)} />
+          </label>
+          <Button bsStyle="danger" onClick={remove}> Delete </Button>
+        </div>
+      } />
   </div>
 
 );
