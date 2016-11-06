@@ -5,17 +5,19 @@ import constrainedEvents from '../constrained-event/ConstrainedEventReducer';
 import selectedEventIds from '../selected-events/SelectedEventReducer';
 import constraints from '../constraint/ConstraintReducer';
 import selectedType from '../constraint-type/ConstraintTypeReducer';
+import expandedIds from '../expandable/ExpandableReducer';
 
 const reduceStateTree = reduceParts({
   constrainedEvents,
   selectedEventIds,
   selectedType,
-  constraints
+  constraints,
+  expandedIds
  });
 
 export default function reduce(state = fromJS({}), action) {
   switch (action.type) {
-    case INITIALISE_STATE: return fromJS(action.state);
+    case INITIALISE_STATE: return state.mergeDeep(fromJS(action.state));
     case UPDATE_VALUE:     return state.setIn(action.variablePath, action.value);
     default:               return reduceStateTree(state, action);
   }

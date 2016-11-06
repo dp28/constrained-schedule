@@ -7,27 +7,33 @@ import DurationRange from '../duration/DurationRange';
 import TextInput from '../text/TextInput';
 import {toggleEventSelected} from '../selected-events/SelectedEventActionCreators';
 import {deleteEvent} from './ConstrainedEventActionCreators';
+import Expandable from '../expandable/Expandable';
 import './ConstrainedEvent.css';
 
 const ConstrainedEvent = ({ event, variablePath, remove, toggleSelected }) => (
   <div className="ConstrainedEvent">
-    <TextInput text={event.get('name')} variablePath={variablePath.concat(['name'])} />
-    <label>
-      <span className="ConstrainedEvent-field">Duration</span>
-      <DurationRange {...extractRangeProps('duration', event, variablePath)} />
-    </label>
+    <Expandable unexpanded={<p>{event.get('name')}</p>} expanded={
+      <div>
+        <TextInput text={event.get('name')} variablePath={variablePath.concat(['name'])} />
+        <label>
+          <span className="ConstrainedEvent-field">Duration</span>
+          <DurationRange {...extractRangeProps('duration', event, variablePath)} />
+        </label>
 
-    <label>
-      <span className="ConstrainedEvent-field">Start</span>
-      <TimeRange {...extractRangeProps('start', event, variablePath)} />
-    </label>
-    <label>
-      <span className="ConstrainedEvent-field">End</span>
-      <TimeRange {...extractRangeProps('end', event, variablePath)} />
-    </label>
-    <Button bsStyle="danger" onClick={remove}> Delete </Button>
-    <Button onClick={toggleSelected}> Select </Button>
+        <label>
+          <span className="ConstrainedEvent-field">Start</span>
+          <TimeRange {...extractRangeProps('start', event, variablePath)} />
+        </label>
+        <label>
+          <span className="ConstrainedEvent-field">End</span>
+          <TimeRange {...extractRangeProps('end', event, variablePath)} />
+        </label>
+        <Button bsStyle="danger" onClick={remove}> Delete </Button>
+        <Button onClick={toggleSelected}> Select </Button>
+      </div>
+    } />
   </div>
+
 );
 
 function extractRangeProps(varName, event, variablePath) {
