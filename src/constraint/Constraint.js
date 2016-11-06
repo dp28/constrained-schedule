@@ -5,7 +5,10 @@ import {getEventMap} from '../constrained-event/ConstrainedEventSelectors';
 import EventList from '../event-list/EventList';
 
 export const Constraint = ({ constraint, events }) => (
-  <EventList events={events} />
+  <div className="Constraint">
+    Type: {constraint.get('type')}
+    <EventList events={events} />
+  </div>
 )
 
 export function mapStateToProps(state, { constraint }) {

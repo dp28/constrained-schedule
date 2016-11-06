@@ -4,8 +4,14 @@ import {INITIALISE_STATE, UPDATE_VALUE} from './StateActionCreators';
 import constrainedEvents from '../constrained-event/ConstrainedEventReducer';
 import selectedEventIds from '../selected-events/SelectedEventReducer';
 import constraints from '../constraint/ConstraintReducer';
+import selectedType from '../constraint-type/ConstraintTypeReducer';
 
-const reduceStateTree = reduceParts({ constrainedEvents, selectedEventIds, constraints });
+const reduceStateTree = reduceParts({
+  constrainedEvents,
+  selectedEventIds,
+  selectedType,
+  constraints
+ });
 
 export default function reduce(state = fromJS({}), action) {
   switch (action.type) {

@@ -10,7 +10,7 @@ export default function reduce(constraintMap = fromJS({}), action) {
   }
 }
 
-function createConstraint(constraintMap, { eventIds }) {
+function createConstraint(constraintMap, { eventIds, constraintType }) {
   const id = generateId();
-  return constraintMap.set(id, fromJS({ id, eventIds }));
+  return constraintMap.set(id, fromJS({ id, eventIds, type: constraintType }));
 }
