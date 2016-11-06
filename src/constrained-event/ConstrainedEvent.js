@@ -25,8 +25,8 @@ const ConstrainedEvent = ({ event, variablePath, remove, toggleSelected }) => (
       <span className="ConstrainedEvent-field">End</span>
       <TimeRange {...extractRangeProps('end', event, variablePath)} />
     </label>
-    <Button bsStyle="danger" onClick={remove(event)}> Delete </Button>
-    <Button onClick={toggleSelected(event)}> Select </Button>
+    <Button bsStyle="danger" onClick={remove}> Delete </Button>
+    <Button onClick={toggleSelected}> Select </Button>
   </div>
 );
 
@@ -38,10 +38,10 @@ function extractRangeProps(varName, event, variablePath) {
   }
 }
 
-export function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch, { event }) {
   return {
-    remove: event => () => dispatch(deleteEvent(event.get('id'))),
-    toggleSelected: event => () => dispatch(toggleEventSelected(event.get('id')))
+    remove: () => dispatch(deleteEvent(event.get('id'))),
+    toggleSelected: () => dispatch(toggleEventSelected(event.get('id')))
   }
 }
 
